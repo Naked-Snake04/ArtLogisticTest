@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,6 +23,14 @@ class ArtLogisticTestApplicationTests {
 		mockMvc.perform(post("/account/login")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content("{\"username\":\"sa_apitest\",\"password\":\"Zuvo4715\"}"))
+				.andExpect(status().isOk());
+	}
+
+	@Test
+	void testPushRequest() throws Exception {
+		mockMvc.perform(get("/request")
+				.param("service", "STOCKSTATE")
+				.param("date-to", "2025-12-31T23:59:59Z"))
 				.andExpect(status().isOk());
 	}
 }
