@@ -25,6 +25,26 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+openApiGenerate {
+	generatorName.set('java')
+	remoteInputSpec.set('https://api-prod.arvato.ru/resources/openapi/openapi.json')
+	ignoreFileOverride.set(".openapi-generator-java-sources.ignore")
+	invokerPackage.set('com.myapp')
+	modelPackage.set('com.myapp.model')
+	apiPackage.set('com.myapp.api')
+	configOptions.set([
+			library: 'restclient',
+			openApiNullable: 'false'
+
+	])
+}
+
+sourceSets.main.java.srcDir "${buildDir}/generate-resources/main/src/main/java"
+
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+tasks.named('compileJava') {
+	dependsOn(tasks.openApiGenerate)
 }
