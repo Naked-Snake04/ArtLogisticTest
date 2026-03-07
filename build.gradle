@@ -21,22 +21,34 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'io.swagger.core.v3:swagger-annotations:2.2.15'
+	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 openApiGenerate {
-	generatorName.set('java')
+	generatorName.set('spring')
 	remoteInputSpec.set('https://api-prod.arvato.ru/resources/openapi/openapi.json')
 	ignoreFileOverride.set(".openapi-generator-java-sources.ignore")
 	invokerPackage.set('com.myapp')
 	modelPackage.set('com.myapp.model')
 	apiPackage.set('com.myapp.api')
 	configOptions.set([
-			library: 'restclient',
-			openApiNullable: 'false'
-
+			interfaceOnly: "true",
+			useSpringBoot3: "true",
+			useJakartaEe: "true",
+			serializableModel: "true",
+			skipDefaultInterface: "true",
+			openApiNullable: "false"
 	])
+
+	globalProperties = [
+			apiTests: "false",
+			modelTests: "false",
+			apiDocs: "false",
+			modelDocs: "false"
+	]
 }
 
 sourceSets.main.java.srcDir "${buildDir}/generate-resources/main/src/main/java"
