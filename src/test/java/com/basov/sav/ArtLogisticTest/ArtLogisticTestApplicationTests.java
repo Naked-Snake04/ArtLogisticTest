@@ -22,10 +22,13 @@ class ArtLogisticTestApplicationTests {
 
 	@Test
 	void testLogin() throws Exception {
+		String jsonRequest = "{\"username\":\"sa_apitest\",\"password\":\"Zuvo4715\"}";
+
 		mockMvc.perform(post("/account/login")
 						.contentType(MediaType.APPLICATION_JSON)
-						.content("{\"username\":\"sa_apitest\",\"password\":\"Zuvo4715\"}"))
-				.andExpect(status().isOk());
+						.content(jsonRequest))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.access").value("true"));
 	}
 
 	@Test
