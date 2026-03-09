@@ -20,7 +20,7 @@ public class AccountLoginController implements AccountApi {
         if (checkAccountCredentials(accountCredentials)) {
             return ResponseEntity.ok("{\"access\": \"true\"}");
         } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("{\"access\": \"false\"}");
         }
     }
 
