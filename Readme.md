@@ -7,9 +7,13 @@
 - регистрации тикета: https://api-prod.arvato.ru/index.html#/create%20request/pushRequest service = stockstate, date-to = 2025-12-31,
 - получения данных по тикету:https://api-prod.arvato.ru/index.html#/request%20processing/getStockstate с одной записью stock-item.
 
+# Перед запуском
+- Убедитесь, что у вас установлено JDK 17;
+- Убедитесь, что в IDE в настройках у Gradle JVM установлена JDK 17 (для Intellij IDEA `File | Settings | Build, Execution, Deployment | Build Tools | Gradle`).
+
 # Инструкция для запуска
 
 1. Склонировать репозиторий через `git clone https://github.com/Naked-Snake04/ArtLogisticTest.git`
 2. Для генерации классов в папке `build` корне проекта выполнить команду `gradlew compileJava`.
-После этого появятся сгенерированные классы по пути `build/generate-resources/main/src`)`.
+После этого появятся сгенерированные классы по пути `build/generate-resources/main/src`.
 3. Для запуска тестов выполнить команду `gradlew test`. Тесты находятся [Здесь](src/test/java/com/basov/sav/ArtLogisticTest/ArtLogisticTestApplicationTests.java).
