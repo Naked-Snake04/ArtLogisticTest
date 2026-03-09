@@ -10,8 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -35,8 +34,9 @@ class ArtLogisticTestApplicationTests {
 	void testPushRequest() throws Exception {
 		mockMvc.perform(get("/request")
 				.param("service", "STOCKSTATE")
-				.param("date-to", "2025-12-31T23:59:59Z"))
-				.andExpect(status().isOk());
+				.param("date-to", "2025-12-31T00:00:00Z"))
+				.andExpect(status().isOk())
+				.andExpect(content().string("stock-item"));
 	}
 
 	@Test
