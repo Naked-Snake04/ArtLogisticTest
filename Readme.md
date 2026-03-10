@@ -16,4 +16,4 @@
 1. Склонировать репозиторий через `git clone https://github.com/Naked-Snake04/ArtLogisticTest.git`
 2. Для генерации классов в папке `build` корне проекта выполнить команду `gradlew compileJava`.
 После этого появятся сгенерированные классы по пути `build/generate-resources/main/src`.
-3. Для запуска тестов выполнить команду `gradlew test`. Тесты находятся [Здесь](src/test/java/com/basov/sav/ArtLogisticTest/ArtLogisticTestApplicationTests.java).
+3. Для запуска тестов выполнить команду `gradlew test`. Тесты находятся [здесь](src/test/java/com/basov/sav/ArtLogisticTest/Controllers)
